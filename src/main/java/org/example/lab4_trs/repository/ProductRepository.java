@@ -3,6 +3,7 @@ package org.example.lab4_trs.repository;
 import org.example.lab4_trs.entity.Parameter;
 import org.example.lab4_trs.entity.Product;
 import org.example.lab4_trs.entity.ProductGroup;
+import org.example.lab4_trs.entity.ProductParameterValue;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -27,6 +28,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findProductsWithoutParameter(@Param("parameterId") Long parameterId);
 
     List<Product> findByProductGroup_Id(Long id);
+
+    @Modifying
+    @Transactional
+    @Query("""
+        delete from Product p
+        where p.id in (
+            select distinct ppv.product.id from ProductParameterValue ppv
+                where ppv.parameter.id in :parameterIds
+        )
+    """)
+    void deleteProductsByParameterIds(@Param("parameterIds") List<Long> parameterIds);
 
 
 }
