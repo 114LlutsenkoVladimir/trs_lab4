@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -19,13 +20,7 @@ public class ProductGroup {
     @Column(name = "name", nullable = false, length = 100)
     private String name;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_group_parameter_group",
-            joinColumns = @JoinColumn(name = "product_group_id"),
-            inverseJoinColumns = @JoinColumn(name = "parameter_group_id")
-    )
-    private Set<ParameterGroup> parameterGroups;
-
+    @OneToMany(mappedBy = "productGroup", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductGroupParameterGroup> productGroupParameterGroups = new LinkedHashSet<>();
 
 }

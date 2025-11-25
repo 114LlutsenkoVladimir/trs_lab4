@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,5 +30,8 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_group_id", nullable = false)
     private ProductGroup productGroup;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductParameterValue> productParameterValues = new LinkedHashSet<>();
 
 }

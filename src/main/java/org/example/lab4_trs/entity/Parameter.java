@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Entity
@@ -23,5 +26,8 @@ public class Parameter {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "parameter_group_id", nullable = false)
     private ParameterGroup parameterGroup;
+
+    @OneToMany(mappedBy = "parameter", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductParameterValue> productParameterValues = new LinkedHashSet<>();
 
 }
