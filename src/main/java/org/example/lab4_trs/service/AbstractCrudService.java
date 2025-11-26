@@ -1,6 +1,5 @@
 package org.example.lab4_trs.service;
 
-import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

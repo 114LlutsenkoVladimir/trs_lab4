@@ -38,7 +38,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                 where ppv.parameter.id in :parameterIds
         )
     """)
-    void deleteProductsByParameterIds(@Param("parameterIds") List<Long> parameterIds);
+    List<Parameter> deleteProductsByParameterIds(@Param("parameterIds") List<Long> parameterIds);
+
 
 
 }

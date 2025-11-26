@@ -2,11 +2,14 @@ package org.example.lab4_trs.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "product_group_parameter_group")
 public class ProductGroupParameterGroup {
     @Id
@@ -22,4 +25,9 @@ public class ProductGroupParameterGroup {
     @JoinColumn(name = "parameter_group_id", nullable = false)
     private ParameterGroup parameterGroup;
 
+    public ProductGroupParameterGroup(ProductGroup productGroup,
+                                      ParameterGroup parameterGroup) {
+        this.productGroup = productGroup;
+        this.parameterGroup = parameterGroup;
+    }
 }
