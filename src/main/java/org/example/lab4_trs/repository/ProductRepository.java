@@ -29,17 +29,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByProductGroup_Id(Long id);
 
-    @Modifying
     @Transactional
-    @Query("""
-        delete from Product p
-        where p.id in (
-            select distinct ppv.product.id from ProductParameterValue ppv
-                where ppv.parameter.id in :parameterIds
-        )
-    """)
-    List<Parameter> deleteProductsByParameterIds(@Param("parameterIds") List<Long> parameterIds);
+    default List<Product> deleteProductsByParameterIds(List<Long> parameterIds) {
+        List<Product> products = findByProductParameterValues_Parameter_Id(parameterIds);
+        deleteAll(products);
+        return products;
+    };
 
+    @Query("""
+            select distinct p from Product p inner join p.productParameterValues productParameterValues
+            where productParameterValues.parameter.id in :parameterIds""")
+    List<Product> findByProductParameterValues_Parameter_Id(@Param("parameterIds") List<Long> parameterIds);
 
 
 }

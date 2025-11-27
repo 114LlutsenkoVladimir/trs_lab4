@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductGroupParameterGroupRepository extends JpaRepository<ProductGroupParameterGroup, Long> {
     @Query("""
@@ -17,5 +18,9 @@ public interface ProductGroupParameterGroupRepository extends JpaRepository<Prod
             where link.productGroup.id = :productGroupId
     """)
     List<Parameter> getParametersForProductGroup(Long productGroupId);
+
+
+    Optional<ProductGroupParameterGroup> findByProductGroup_IdAndParameterGroup_Id(Long productGroupId,
+                                                                                   Long parameterGroupId);
 
 }
