@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-class ParameterService extends AbstractCrudService<Parameter, Long, ParameterRepository> {
+public class ParameterService extends AbstractCrudService<Parameter, Long, ParameterRepository> {
 
     ProductGroupRepository productGroupRepository;
 

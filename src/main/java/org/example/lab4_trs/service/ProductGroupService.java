@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-class ProductGroupService extends AbstractCrudService<ProductGroup, Long, ProductGroupRepository>{
+public class ProductGroupService extends AbstractCrudService<ProductGroup, Long, ProductGroupRepository>{
     ProductGroupParameterGroupRepository productGroupParameterGroupRepository;
 
     ParameterRepository parameterRepository;

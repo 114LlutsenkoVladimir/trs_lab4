@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-class ProductService extends AbstractCrudService<Product, Long, ProductRepository> {
+public class ProductService extends AbstractCrudService<Product, Long, ProductRepository> {
     public List<Product> findProductsWithoutParameter(Long parameterId) {
         return repository.findProductsWithoutParameter(parameterId);
     }

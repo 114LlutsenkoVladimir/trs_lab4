@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-class ProductParameterValueService extends AbstractCrudService<ProductParameterValue, Long,
+public class ProductParameterValueService extends AbstractCrudService<ProductParameterValue, Long,
         ProductParameterValueRepository> {
 
-    List<ParametersByProductDto> getParametersByProduct(List<Long> productIds) {
+    public List<ParametersByProductDto> getParametersByProduct(List<Long> productIds) {
         List<ProductWithParametersDto> productWithParametersDtos =
                 repository.findProductWithParametersByProductId(productIds);
 
@@ -31,5 +31,10 @@ class ProductParameterValueService extends AbstractCrudService<ProductParameterV
         }
         return new ArrayList<>(map.values());
     }
+
+    public List<ParametersByProductDto> getParametersByProduct(Long productId) {
+        return getParametersByProduct(new ArrayList<>(List.of(productId)));
+    }
+
 
 }
