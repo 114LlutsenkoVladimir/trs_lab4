@@ -7,5 +7,42 @@
 
 <body>
 
+<form th:action="@{/products/productWithoutParameter}" method="get">
+    <select name="parameterId">
+        <option value="">-- Оберіть параметр --</option>
+        <option th:each="p : ${allParameters}"
+                th:value="${p.id}"
+                th:text="${p.name + ' (' + p.unit + ')'}">
+        </option>
+    </select>
+    <button type="submit">get</button>
+</form>
+
+<form th:action="@{/products/productsByProductGroupId}" method="get">
+    <select name="productGroupId">
+        <option value="">-- Оберіть параметр --</option>
+        <option th:each="p : ${allProductGroups}"
+                th:value="${p.id}"
+                th:text="${p.name}">
+        </option>
+    </select>
+    <button type="submit">get</button>
+</form>
+
+
+<form th:action="@{/products/productWithoutParameter}" method="get">
+
+    <div th:each="p : ${parameters}">
+        <label>
+            <input type="checkbox"
+                   name="parameterIds"
+                   th:value="${p.id}">
+            <span th:text="${p.name + ' (' + p.unit + ')'}"></span>
+        </label>
+    </div>
+
+    <button type="submit">Get</button>
+</form>
+
 </body>
 </html>

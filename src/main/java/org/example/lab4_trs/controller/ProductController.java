@@ -20,8 +20,8 @@ public class ProductController {
 
     ProductParameterValueService productParameterValueService;
 
-    @GetMapping("/productWithoutParameter/{parameterId}")
-    public String getProductsWithoutParameter(@PathVariable Long parameterId,
+    @GetMapping("/productWithoutParameter")
+    public String getProductsWithoutParameter(@RequestParam Long parameterId,
                                               Model model) {
         model.addAttribute("products",
                 productService.findProductsWithoutParameter(parameterId));
