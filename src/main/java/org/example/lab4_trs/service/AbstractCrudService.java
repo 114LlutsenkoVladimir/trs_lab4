@@ -1,13 +1,19 @@
 package org.example.lab4_trs.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Optional;
 
+
 public class AbstractCrudService<T, ID, RP extends JpaRepository<T, ID>> {
 
-    protected RP repository;
+    protected final RP repository;
+
+    protected AbstractCrudService(RP repository) {
+        this.repository = repository;
+    }
 
     public void create(T entity) {
         repository.save(entity);

@@ -10,6 +10,11 @@ import java.util.List;
 
 @Service
 public class ProductService extends AbstractCrudService<Product, Long, ProductRepository> {
+
+    public ProductService(ProductRepository repository) {
+        super(repository);
+    }
+
     public List<Product> findProductsWithoutParameter(Long parameterId) {
         return repository.findProductsWithoutParameter(parameterId);
     }

@@ -14,6 +14,10 @@ import java.util.*;
 public class ProductParameterValueService extends AbstractCrudService<ProductParameterValue, Long,
         ProductParameterValueRepository> {
 
+    public ProductParameterValueService(ProductParameterValueRepository repository) {
+        super(repository);
+    }
+
     public List<ParametersByProductDto> getParametersByProduct(List<Long> productIds) {
         List<ProductWithParametersDto> productWithParametersDtos =
                 repository.findProductWithParametersByProductId(productIds);

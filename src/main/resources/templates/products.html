@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css}">
 </head>
 
 <body>
 
-<form th:action="@{/products/productWithoutParameter}" method="get">
-    <select name="parameterId">
+<form th:action="@{/products/deleteProductsWithParameters}" method="get">
+    <select name="productGroupId">
         <option value="">-- Оберіть параметр --</option>
         <option th:each="p : ${allParameters}"
                 th:value="${p.id}"
-                th:text="${p.name + ' (' + p.unit + ')'}">
+                th:text="${p.name}">
         </option>
     </select>
-    <button type="submit">get</button>
+    <button type="submit">delete</button>
 </form>
 
 <form th:action="@{/products/productsByProductGroupId}" method="get">
@@ -26,23 +28,48 @@
                 th:text="${p.name}">
         </option>
     </select>
-    <button type="submit">get</button>
+    <button class="btn btn-outline-danger" type="submit">get by pg</button>
 </form>
+
 
 
 <form th:action="@{/products/productWithoutParameter}" method="get">
 
-    <div th:each="p : ${parameters}">
-        <label>
-            <input type="checkbox"
-                   name="parameterIds"
-                   th:value="${p.id}">
-            <span th:text="${p.name + ' (' + p.unit + ')'}"></span>
-        </label>
-    </div>
+        <select name="parameterId">
+            <option value="">-- Оберіть параметр --</option>
+            <option th:each="p : ${allParameters}"
+                    th:value="${p.id}"
+                    th:text="${p.name}">
+            </option>
+        </select>
 
-    <button type="submit">Get</button>
+    <button class="btn btn-light" type="submit">Get</button>
 </form>
+
+<table class="table table-striped table-hover table-sm" th:if="${products != null and !products.isEmpty()}">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Назва</th>
+        <th>Опис</th>
+        <th>Дата випуску</th>
+        <th>Група</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${products}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.description}"></td>
+        <td th:text="${p.releaseDate}"></td>
+        <td th:text="${p.productGroup.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p th:if="${products == null or products.isEmpty()}">
+    Немає продуктів, що задовольняють умову.
+</p>
 
 </body>
 </html>

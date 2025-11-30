@@ -21,8 +21,5 @@ class ParameterController {
                 parameterService.getParametersByProductGroup(productGroupId));
         return "parameters";
     }
-
-
-
-
+    
 }
