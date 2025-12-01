@@ -33,6 +33,9 @@ public class ProductParameterValueService extends AbstractCrudService<ProductPar
                     );
             resultDto.addParameterWithValue(dto.getParameter());
         }
+        System.out.println("================================================ " +
+                map.isEmpty()
+        );
         return new ArrayList<>(map.values());
     }
 

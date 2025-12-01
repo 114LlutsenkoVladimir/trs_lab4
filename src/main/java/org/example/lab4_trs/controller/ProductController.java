@@ -67,13 +67,13 @@ public class ProductController {
         return "products";
     }
 
-//    @GetMapping("/getProductWithParameters/{productId}")
-//    public String getProductWithParameters(@PathVariable Long productId,
-//                                           Model model) {
-//        model.addAttribute("dtoTable",
-//                productParameterValueService.getParametersByProduct(productId));
-//        return "products";
-//    }
+    @GetMapping("/getProductWithParameters/{productId}")
+    public String getProductWithParameters(@PathVariable Long productId,
+                                           Model model) {
+        model.addAttribute("dtoTable",
+                productParameterValueService.getParametersByProduct(productId));
+        return "products";
+    }
 
 
 
