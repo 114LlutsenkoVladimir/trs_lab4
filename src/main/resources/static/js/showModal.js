@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!url || !container) return;
 
-        // Можно показать прелоадер
+        // Можно показать заглушку на время загрузки
         container.innerHTML = '<p>Завантаження...</p>';
 
         fetch(url)

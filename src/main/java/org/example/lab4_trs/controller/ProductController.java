@@ -72,7 +72,7 @@ public class ProductController {
                                            Model model) {
         model.addAttribute("dtoTable",
                 productParameterValueService.getParametersByProduct(productId));
-        return "products";
+        return "fragments/product-details :: content";
     }
 
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="header">
+
+    <nav class="bg-dark py-2 mb-4">
+        <div class="container d-flex gap-4">
+
+            <a class="text-light text-decoration-none d-flex align-items-center gap-1"
+               th:href="@{/products/}">
+                <i class="bi bi-phone"></i>
+                <span>Продукти</span>
+            </a>
+
+            <a class="text-light text-decoration-none d-flex align-items-center gap-1"
+               th:href="@{/parameters/}">
+                <i class="bi bi-sliders"></i>
+                <span>Параметри</span>
+            </a>
+
+            <a class="text-light text-decoration-none d-flex align-items-center gap-1"
+               th:href="@{/productGroups/}">
+                <i class="bi bi-collection"></i>
+                <span>Групи продуктів</span>
+            </a>
+
+        </div>
+    </nav>
+
+</div>
+
+</body>
+</html>

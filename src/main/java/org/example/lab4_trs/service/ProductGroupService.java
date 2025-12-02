@@ -31,22 +31,29 @@ public class ProductGroupService extends AbstractCrudService<ProductGroup, Long,
     }
 
     public void moveParameterGroup(Long fromProductGroupId, Long toProductGroupId, Long parameterGroupId) {
-        ProductGroup from = productGroupRepository.findById(fromProductGroupId).orElseThrow();
-        ProductGroup to = productGroupRepository.findById(toProductGroupId).orElseThrow();
-        ParameterGroup parameter = parameterGroupRepository.findById(parameterGroupId).orElseThrow();
+        ProductGroup from = productGroupRepository.findById(fromProductGroupId)
+                .orElseThrow(() -> new RuntimeException("Групи продукції не існує"));
+        ProductGroup to = productGroupRepository.findById(toProductGroupId)
+                .orElseThrow(() -> new RuntimeException("Такого параметра не існує"));
+        ParameterGroup parameter = parameterGroupRepository.findById(parameterGroupId)
+                .orElseThrow(() -> new RuntimeException("Групи продукції не існує"));
+
+        if(fromProductGroupId.equals(toProductGroupId))
+            throw new RuntimeException("Групи продукції відправки та назначення співпадають");
 
         ProductGroupParameterGroup link = productGroupParameterGroupRepository
                 .findByProductGroup_IdAndParameterGroup_Id(fromProductGroupId, parameterGroupId)
-                .orElseThrow();
+                .orElseThrow(() -> new RuntimeException("У групи відправки таких параметрів немає"));
 
         boolean alreadyExist = productGroupParameterGroupRepository
                 .findByProductGroup_IdAndParameterGroup_Id(toProductGroupId, parameterGroupId)
                 .isPresent();
 
         if(alreadyExist)
-            throw new RuntimeException("група параметрів вже привьязана до цієї групи продуктів");
+            throw new RuntimeException("Група параметрів вже прив'язана до цієї групи продуктів");
 
         link.setProductGroup(to);
+        productGroupParameterGroupRepository.save(link);
     }
 
 

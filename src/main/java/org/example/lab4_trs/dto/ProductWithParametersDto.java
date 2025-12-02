@@ -8,9 +8,9 @@ import java.time.LocalDate;
 @Getter
 public class ProductWithParametersDto {
 
-        ProductMainFields product;
+        private ProductMainFields product;
 
-        ParameterWithValue parameter;
+        private ParameterWithValue parameter;
 
     public ProductWithParametersDto(Long productId, String productName,
                                     String productDescription, LocalDate productReleaseDate,
