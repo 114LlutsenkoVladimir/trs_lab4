@@ -11,13 +11,12 @@
 <div th:replace="~{fragments/header :: header}"></div>
 
 <form th:action="@{/products/deleteProductsWithParameters}" method="get">
-    <div th:each="p, stat : ${allParameters}">
+    <div th:each="p : ${allParameters}">
         <input class="form-check-input"
                type="checkbox"
                name="parameterIds"
                th:value="${p.id}"
-               th:id="'paramCheckbox__' + ${p.id}"
-               th:attrappend="required=${stat.first}">
+               th:id="'paramCheckbox__' + ${p.id}">
         <label th:for="'paramCheckbox__' + ${p.id}"
                th:text="${p.name}">
         </label>
