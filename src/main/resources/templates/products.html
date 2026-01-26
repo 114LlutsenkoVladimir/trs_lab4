@@ -5,10 +5,17 @@
     <title>Title</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.8/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.13.1/font/bootstrap-icons.min.css}">
+
 </head>
 
 <body>
 <div th:replace="~{fragments/header :: header}"></div>
+
+<button class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#testModal">
+    Open test modal
+</button>
 
 <form th:action="@{/products/deleteProductsWithParameters}" method="get">
     <div th:each="p : ${allParameters}">
@@ -86,23 +93,8 @@
     Немає продуктів, що задовольняють умову.
 </p>
 
-<div class="modal fade" id="productInfoModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <div class="modal-header bg-info text-white">
-                <h5 class="modal-title">Інформація про продукт</h5>
-                <button class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-
-            <div class="modal-body" id="productDetailsContainer">
-                <!-- Сюди JS підставить HTML з product-details.html -->
-            </div>
-
-        </div>
-    </div>
-</div>
-
+<div th:replace="~{fragments/product-details}"></div>
+<div th:replace="~{fragments/test-modal}"></div>
 
 <script th:src="@{/webjars/bootstrap/5.3.8/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/js/showModal.js}"></script>

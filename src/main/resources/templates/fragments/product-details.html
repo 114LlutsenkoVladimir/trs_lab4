@@ -2,6 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
+<div class="modal fade" id="productInfoModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title">Інформація про продукт</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body" id="productDetailsContainer">
+                <!-- Сюди JS підставить HTML з product-details.html -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div th:fragment="content">
     <div th:if="${dtoTable != null and !dtoTable.isEmpty()}">
 
@@ -57,8 +74,12 @@
         </table>
     </div>
 
-    <div th:if="${dtoTable == null or dtoTable.isEmpty()}">
-        <p>Немає даних для відображення.</p>
+    <div th:if="${dtoTable == null}">
+        <p>Немає даних для відображення. null</p>
+    </div>
+
+    <div th:if="${dtoTable != null and dtoTable.isEmpty()}">
+        <p>Немає даних для відображення. Empty</p>
     </div>
 </div>
 
